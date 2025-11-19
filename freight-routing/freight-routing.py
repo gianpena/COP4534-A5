@@ -17,9 +17,10 @@ for k in range(n):
         dp[i][j] = dp[i][k] + dp[k][j]
 
 if any(dp[u][u] < 0 for u in range(n)):
-  print('Negative weight cycle detected!')
+  print('\nNegative weight cycle detected!')
   exit(0)
 
+print('')
 for i in range(n):
   for j in range(n):
     print(f'{i} -> {j}: ', end='')
