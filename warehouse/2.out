@@ -1,0 +1,6 @@
+Please enter the number of distinct items available for purchase: Please enter the weight limit for all items purchased: For each of the next n lines of input, enter:
+1) The cost of procuring this item
+2) The revenue this item generates
+3) The weight of this item
+each separated by a single space.
+Maximum possible profit is 15
