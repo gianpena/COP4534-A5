@@ -6,7 +6,8 @@ W = int(input())
 print("For each of the next n lines of input, enter:\n" \
 "1) The cost of procuring this item\n" \
 "2) The revenue this item generates\n" \
-"3) The weight of this item")
+"3) The weight of this item\n" \
+"each separated by a single space.")
 
 items = []
 for i in range(n):
