@@ -18,9 +18,13 @@ dp = [[-1 for j in range(W+1)] for i in range(n)]
 for i in range(n):
   dp[i][0] = 0
 
-for i in range(n-1, -1, -1):
+for w in range(W+1):
+  dp[n-1][w] = items[n-1][1] - items[n-1][0] if w >= items[n-1][2] else 0
+
+for i in range(n-2, -1, -1):
   for w in range(1, W+1):
-    take = items[i][1] - items[i][0] + dp[i+1][w - items[i][2]]
+    if w >= items[i][2]: take = items[i][1] - items[i][0] + dp[i+1][w - items[i][2]]
+    else: take = 0
     dont_take = dp[i+1][w]
     dp[i][w] = max(take, dont_take)
 
