@@ -24,7 +24,7 @@ for w in range(W+1):
 
 for i in range(n-2, -1, -1):
   for w in range(1, W+1):
-    if w >= items[i][2]: take = items[i][1] - items[i][0] + dp[i+1][w - items[i][2]]
+    if w >= items[i][2]: take = items[i][1] - items[i][0] + dp[i][w - items[i][2]]
     else: take = 0
     dont_take = dp[i+1][w]
     dp[i][w] = max(take, dont_take)
