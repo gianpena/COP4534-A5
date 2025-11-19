@@ -1,0 +1,4 @@
+Please enter the number of nodes and edges in your graph, separated by a single space: For the next e lines, please enter the two nodes the edge joins, and the edge weight, separated by a single space.
+Please note that the graph is directed.
+
+Negative weight cycle detected!
