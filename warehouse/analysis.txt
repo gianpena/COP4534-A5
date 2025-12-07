@@ -1,0 +1,55 @@
+Problem: Maximum Profit Under Weight Constraints
+(0/1 Unbounded Knapsack Variant With Profit per Item)
+
+This maps to a classic **Knapsack Dynamic Programming** model.
+
+DP Interpretation:
+This problem maps to an **Unbounded Knapsack DP**, because the code allows
+taking the same item repeatedly (notice dp[i][w] uses dp[i][...], not dp[i+1]).
+
+State definition:
+    dp[i][w] = maximum profit using items i..n-1 with weight limit w
+
+Where:
+- i indexes which item(s) you are allowed to consider
+- w is the remaining allowed weight
+
+Base Cases:
+
+1. Weight capacity = 0:
+    dp[i][0] = 0
+   No weight → no items → no profit.
+
+2. Last item (i == n-1):
+   If you still have weight w:
+       You may take the last item repeatedly as long as weight allows.
+   So:
+       dp[n-1][w] = profit_of_last_item if (w >= weight) else 0
+
+Transition (Recurrence Formula):
+
+For item i and weight w:
+
+Option A: Take item i (only if weight allows):
+    take = profit[i] + dp[i][w - weight[i]]
+
+Option B: Skip item i:
+    dont_take = dp[i+1][w]
+
+Thus:
+    dp[i][w] = max(take, dont_take)
+
+Complexity Analysis:
+
+Let:
+- n = number of items
+- W = weight capacity
+
+Time Complexity:      O(n * W)
+Space Complexity:     O(n * W)
+
+1.5 Example Edge Cases:
+- Items with zero or negative profit → DP should avoid them.
+- Item too heavy for limit → automatically skipped.
+- All items heavier than W → answer = 0.
+- Very large profit on lightweight item → DP repeatedly uses it.

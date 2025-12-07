@@ -1,0 +1,36 @@
+Problem: Warehouse Inventory Optimization
+
+Dynamic Programming Analysis
+Classic DP Mapping:
+This problem corresponds to the Floyd–Warshall DP algorithm for computing
+All-Pairs Shortest Paths (APSP) in a weighted directed graph.
+
+DP State:
+dp[i][j] = the shortest known distance from node i to node j.
+
+During iteration k, this represents:
+    The shortest path from i to j using only nodes {0..k} as intermediate nodes.
+
+Base Cases:
+    dp[i][i] = 0                         (distance to itself)
+    dp[u][v] = w                         (direct edge initialization)
+    dp[i][j] = ∞                         (no path known yet)
+
+Transition (Recurrence Formula):
+For each intermediate node k:
+    dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j])
+This checks whether going from i → k → j is shorter than the current known path.
+
+Negative Cycle Detection:
+After finishing the DP:
+    If dp[i][i] < 0 for any i, then a negative cycle exists.
+
+Complexity Analysis
+Time Complexity: O(n^3)
+Space Complexity: O(n^2)
+
+Tests:
+- Multiple edges between the same nodes
+- Negative edges but no negative cycle
+- Unreachable paths
+

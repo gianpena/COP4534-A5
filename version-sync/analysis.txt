@@ -1,0 +1,65 @@
+Problem: Minimum Edit Distance Between File Versions
+
+
+This maps directly to the classical Lowest common susbequence.
+Every line is treated like a character in the string
+version of the problem.
+
+
+State Definition:
+Let:
+    dp[i][j] = minimum edit cost to convert s1[0..i] into s2[0..j]
+
+Here:
+- s1 is the old version (A)
+- s2 is the new version (B)
+- i and j index lines (or here characters), 0-based
+
+-----------------------------------------------------------------------
+
+Base Cases:
+
+If s1 is empty:
+    dp[-1][j] = j               (insert j lines)
+
+If s2 is empty:
+    dp[i][-1] = i               (delete i lines)
+
+If both empty:
+    dp[-1][-1] = 0
+
+
+Transition (Recurrence):
+
+We have three possible operations:
+
+1. Replace a line:
+    cost = (s1[i] != s2[j])     # 0 if same, 1 if different
+    dp[i][j] = cost + dp[i-1][j-1]
+
+2. Delete a line from s1:
+    dp[i][j] = 1 + dp[i-1][j]
+
+3. Insert a line into s1:
+    dp[i][j] = 1 + dp[i][j-1]
+
+Final recurrence:
+    dp[i][j] = min(
+        (s1[i] != s2[j]) + dp[i-1][j-1],
+        1 + dp[i-1][j],
+        1 + dp[i][j-1]
+    )
+
+Complexity:
+
+Time Complexity:     O(m * n)
+Space Complexity:    O(m * n)
+
+Where:
+- m = len(s1)
+- n = len(s2)
+
+Example Edge Cases to Demonstrate Correctness:
+- One string empty → requires pure insert/delete operations.
+- Completely different strings → maximal replacements.
+- Identical strings → cost = 0.
